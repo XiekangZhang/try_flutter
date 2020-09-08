@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
   // updates however state should be preserved.
 }
 
 
-class MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> {
   int questionIndex = 0;
 
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
       questionIndex += 1;
     });
@@ -37,7 +37,7 @@ class MyAppState extends State<MyApp> {
             Text(questions[questionIndex]),
             RaisedButton(
               child: Text("Answer 1"),
-              onPressed: answerQuestion, // pass a pointer to the onPressed
+              onPressed: _answerQuestion, // pass a pointer to the onPressed
             ),
             RaisedButton(
               child: Text("Answer 2"),
