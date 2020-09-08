@@ -14,3 +14,15 @@ UI as Code: Build a Widget Tree, Embrace Platform Differences with one codebase.
 No Drag & Drop, No Visual Editor and Code only, but extremely straightforward
 
 In flutter everything is a Widget!
+
+## Material Design Everywhere
+Matterial is a Design System created by Google
+
+## Flutter vs React Native vs Ionic
+There are other frameworks which can be used like Flutter.
+
+Flutter combines Dart and Flutter to crete compiled native apps.
+
+React Native is based on JavaScript/React.js, and is partly compiled (UI Components) Native Apps.
+
+Ionic is only based on JavaScript and is WebView-hosted Web Apps.
