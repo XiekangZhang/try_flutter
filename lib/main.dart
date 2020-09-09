@@ -17,17 +17,17 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _questionIndex += 1;
     });
-    _questionIndex = (_questionIndex > 2) ? 0 : 1;
-    print(_questionIndex);
+    _questionIndex = (_questionIndex > 2) ? 0 : _questionIndex;
+    //print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     // data structure: list, enum, map
-    List<String> questions = [
+    /*List<String> questions = [
       "What's is your favorite color?",
       "What's is your favorite animals?"
-    ];
+    ];*/
 
     var mapQuestions = [
       {
@@ -52,9 +52,11 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: <Widget>[
             Question(mapQuestions[_questionIndex]["questionText"]),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+            // add values to a list
+            ...(mapQuestions[_questionIndex]["answers"] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList(),
           ],
         ), // generated type
       ), // Scaffold basic site design
