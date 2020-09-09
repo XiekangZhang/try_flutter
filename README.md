@@ -6,7 +6,7 @@ A tool that allows you to build native cross-platform (iOS, Android) apps with o
 
 ## What is Dart?
 
-A programming language developed by Google focuses on frontend user interface development. (Object-oriented and mixture of JS, java, and C#)
+An object-oriented programming language developed by Google focuses on frontend user interface development. (Object-oriented and mixture of JS, java, and C#)
 
 ## Flutter Architecture
 UI as Code: Build a Widget Tree, Embrace Platform Differences with one codebase.
@@ -26,3 +26,6 @@ Flutter combines Dart and Flutter to crete compiled native apps.
 React Native is based on JavaScript/React.js, and is partly compiled (UI Components) Native Apps.
 
 Ionic is only based on JavaScript and is WebView-hosted Web Apps.
+
+## The Container()
+Container contains child = content, Padding, Border and Margin
