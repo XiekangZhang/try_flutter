@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'question.dart';
+import 'answer.dart';
 
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _MyAppState();
   }
-  // updates however state should be preserved.
+// updates however state should be preserved.
 }
-
 
 class _MyAppState extends State<MyApp> {
   int _questionIndex = 0;
@@ -17,15 +17,31 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _questionIndex += 1;
     });
-    print("Answer 1 is chosen!");
+    _questionIndex = (_questionIndex > 2) ? 0 : 1;
     print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
+    // data structure: list, enum, map
     List<String> questions = [
       "What's is your favorite color?",
       "What's is your favorite animals?"
+    ];
+
+    var mapQuestions = [
+      {
+        "questionText": "What's is your favorite color?",
+        "answers": ["Black", "Red", "Green", "White"],
+      },
+      {
+        "questionText": "What's is your favorite animals?",
+        "answers": ["Rabbit", "Snake", "Elephant", "Lion"],
+      },
+      {
+        "questionText": "What's is your favorite instructor?",
+        "answers": ["Max", "Max", "Max", "Max"],
+      },
     ];
 
     return MaterialApp(
@@ -35,21 +51,10 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Question(questions[_questionIndex]),
-            RaisedButton(
-              child: Text("Answer 1"),
-              onPressed: _answerQuestion, // pass a pointer to the onPressed
-            ),
-            RaisedButton(
-              child: Text("Answer 2"),
-              onPressed: () {
-                print("Answer 2 is chosen");
-              },
-            ),
-            RaisedButton(
-              child: Text("Answer 3"),
-              onPressed: () => print("Answer 3 is chosen"),
-            )
+            Question(mapQuestions[_questionIndex]["questionText"]),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
           ],
         ), // generated type
       ), // Scaffold basic site design
@@ -58,4 +63,3 @@ class _MyAppState extends State<MyApp> {
 }
 
 void main() => runApp(MyApp()); // shorthands of one line expression
-
