@@ -12,29 +12,52 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int _questionIndex = 0;
-
+  int _totalScore = 0;
   static const _mapQuestions = [
     {
       "questionText": "What's is your favorite color?",
-      "answers": ["Black", "Red", "Green", "White"],
+      "answers": [
+        {"text": "Black", "score": 10},
+        {"text": "Red", "score": 5},
+        {"text": "Green", "score": 3},
+        {"text": "White", "score": 1},
+      ],
     },
     {
       "questionText": "What's is your favorite animals?",
-      "answers": ["Rabbit", "Snake", "Elephant", "Lion"],
+      "answers": [
+        {"text": "Rabbit", "score": 3},
+        {"text": "Snake", "score": 11},
+        {"text": "Elephant", "score": 5},
+        {"text": "Lion", "score": 9},
+      ],
     },
     {
       "questionText": "What's is your favorite instructor?",
-      "answers": ["Max", "Max", "Max", "Max"],
+      "answers": [
+        {"text": "Max", "score": 1},
+        {"text": "Max", "score": 1},
+        {"text": "Max", "score": 1},
+        {"text": "Max", "score": 1},
+      ],
     },
   ];
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex += 1;
     });
     /*_questionIndex =
         (_questionIndex >= mapQuestions.length) ? 0 : _questionIndex;*/
-    //print(_questionIndex);
+    print(_totalScore);
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
   }
 
   @override
@@ -56,7 +79,7 @@ class _MyAppState extends State<MyApp> {
                 questions: _mapQuestions,
                 questionIndex: _questionIndex,
               )
-            : Result(), // generated type
+            : Result(_totalScore, _resetQuiz), // generated type
       ), // Scaffold basic site design
     );
   }

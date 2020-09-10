@@ -18,9 +18,11 @@ class Quiz extends StatelessWidget {
       children: <Widget>[
         Question(this.questions[this.questionIndex]["questionText"]),
         // add values to a list
-        ...(this.questions[this.questionIndex]["answers"] as List<String>)
+        ...(this.questions[this.questionIndex]["answers"]
+                as List<Map<String, Object>>)
             .map((answer) {
-          return Answer(this.answerQuestion, answer);
+          return Answer(
+              () => this.answerQuestion(answer["score"]), answer["text"]);
         }).toList(),
         // a list has map function, but map gives a iterable back not a list, spread operator: ... put all element out of a list
       ],
