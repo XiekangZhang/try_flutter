@@ -29,3 +29,10 @@ Ionic is only based on JavaScript and is WebView-hosted Web Apps.
 
 ## The Container()
 Container contains child = content, Padding, Border and Margin
+
+## final vs const
+both for immutable values.
+* final: the value does not change at the time of after initialized --> at the development phase, you don't know the value --> run time constant
+* const: compile time constant
+
+## Split widgets when it is possible.

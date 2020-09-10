@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
-import 'answer.dart';
+import 'quiz.dart';
+import 'result.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -13,11 +13,27 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int _questionIndex = 0;
 
+  static const _mapQuestions = [
+    {
+      "questionText": "What's is your favorite color?",
+      "answers": ["Black", "Red", "Green", "White"],
+    },
+    {
+      "questionText": "What's is your favorite animals?",
+      "answers": ["Rabbit", "Snake", "Elephant", "Lion"],
+    },
+    {
+      "questionText": "What's is your favorite instructor?",
+      "answers": ["Max", "Max", "Max", "Max"],
+    },
+  ];
+
   void _answerQuestion() {
     setState(() {
       _questionIndex += 1;
     });
-    _questionIndex = (_questionIndex > 2) ? 0 : _questionIndex;
+    /*_questionIndex =
+        (_questionIndex >= mapQuestions.length) ? 0 : _questionIndex;*/
     //print(_questionIndex);
   }
 
@@ -29,36 +45,18 @@ class _MyAppState extends State<MyApp> {
       "What's is your favorite animals?"
     ];*/
 
-    var mapQuestions = [
-      {
-        "questionText": "What's is your favorite color?",
-        "answers": ["Black", "Red", "Green", "White"],
-      },
-      {
-        "questionText": "What's is your favorite animals?",
-        "answers": ["Rabbit", "Snake", "Elephant", "Lion"],
-      },
-      {
-        "questionText": "What's is your favorite instructor?",
-        "answers": ["Max", "Max", "Max", "Max"],
-      },
-    ];
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text("My first App"),
         ),
-        body: Column(
-          children: <Widget>[
-            Question(mapQuestions[_questionIndex]["questionText"]),
-            // add values to a list
-            ...(mapQuestions[_questionIndex]["answers"] as List<String>)
-                .map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList(),
-          ],
-        ), // generated type
+        body: (_questionIndex < _mapQuestions.length)
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questions: _mapQuestions,
+                questionIndex: _questionIndex,
+              )
+            : Result(), // generated type
       ), // Scaffold basic site design
     );
   }
