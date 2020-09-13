@@ -28,4 +28,4 @@ React Native is based on JavaScript/React.js, and is partly compiled (UI Compone
 Ionic is only based on JavaScript and is WebView-hosted Web Apps.
 
 ## The Container()
-Container contains child = content, Padding, Border and Margin
+Container contains child = content, Padding, Border and Margin --> can be used for designiation of width or length

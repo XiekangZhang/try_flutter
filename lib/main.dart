@@ -1,67 +1,58 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
-import 'answer.dart';
+import './transaction.dart';
 
-class MyApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _MyAppState();
-  }
-// updates however state should be preserved.
-}
+void main() => runApp(MyApp());
 
-class _MyAppState extends State<MyApp> {
-  int _questionIndex = 0;
-
-  void _answerQuestion() {
-    setState(() {
-      _questionIndex += 1;
-    });
-    _questionIndex = (_questionIndex > 2) ? 0 : _questionIndex;
-    //print(_questionIndex);
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // data structure: list, enum, map
-    /*List<String> questions = [
-      "What's is your favorite color?",
-      "What's is your favorite animals?"
-    ];*/
-
-    var mapQuestions = [
-      {
-        "questionText": "What's is your favorite color?",
-        "answers": ["Black", "Red", "Green", "White"],
-      },
-      {
-        "questionText": "What's is your favorite animals?",
-        "answers": ["Rabbit", "Snake", "Elephant", "Lion"],
-      },
-      {
-        "questionText": "What's is your favorite instructor?",
-        "answers": ["Max", "Max", "Max", "Max"],
-      },
-    ];
-
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("My first App"),
-        ),
-        body: Column(
-          children: <Widget>[
-            Question(mapQuestions[_questionIndex]["questionText"]),
-            // add values to a list
-            ...(mapQuestions[_questionIndex]["answers"] as List<String>)
-                .map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList(),
-          ],
-        ), // generated type
-      ), // Scaffold basic site design
+      home: MyHomePage(),
+      title: "Flutter App",
     );
   }
 }
 
-void main() => runApp(MyApp()); // shorthands of one line expression
+class MyHomePage extends StatelessWidget {
+  final List<Transaction> transactions = [
+    Transaction(
+        id: "t1", title: "New Shoes", amount: 69.99, date: DateTime.now()),
+    Transaction(
+        id: "t2",
+        title: "Weekly Groceries",
+        amount: 16.53,
+        date: DateTime.now()),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Flutter App"),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            child: Card(
+              color: Colors.blue,
+              child: Text(
+                "CHART!",
+              ),
+              elevation: 5,
+            ),
+          ),
+          Column(
+            children: transactions
+                .map((tx) => Card(
+                      child: Text(tx.title),
+                    ))
+                .toList(),
+          )
+        ],
+      ),
+    );
+  }
+}
