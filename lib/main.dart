@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
   final List<Transaction> transactions = [
     Transaction(
         id: "t1", title: "New Shoes", amount: 69.99, date: DateTime.now()),
@@ -33,7 +35,7 @@ class MyHomePage extends StatelessWidget {
         title: Text("Flutter App"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -44,6 +46,36 @@ class MyHomePage extends StatelessWidget {
                 "CHART!",
               ),
               elevation: 5,
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: "Title"),
+                    controller: titleController,
+                    // onChanged: (value) => titleInput = value,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: "Amount"),
+                    controller: amountController,
+                    // onChanged: (value) => amountInput = value,
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      /*print(titleInput);
+                      print(amountInput);*/
+                      print(titleController.text);
+                    },
+                    child: Text("Add Transaction"),
+                    textColor: Colors.purple,
+                  ),
+                ],
+              ),
             ),
           ),
           Column(
@@ -79,7 +111,9 @@ class MyHomePage extends StatelessWidget {
                               ),
                               Container(
                                 child: Text(
-                                  DateFormat("dd.MMM.yyyy").add_jm().format(tx.date),
+                                  DateFormat("dd.MMM.yyyy")
+                                      .add_jm()
+                                      .format(tx.date),
                                   style: TextStyle(color: Colors.grey),
                                 ),
                               ),
