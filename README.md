@@ -29,3 +29,13 @@ Ionic is only based on JavaScript and is WebView-hosted Web Apps.
 
 ## The Container()
 Container contains child = content, Padding, Border and Margin --> can be used for designiation of width or length --> ! ONE EASY WAY WARPPER EVERY WIDGET INTO CONTAINER.
+
+## SingleChildScrollView
+help to solve the problem with out of pixel ranges
+
+## ListView and ListView.builder()
+ListView and ListView.builder should be wrapped into container and a defined height, because it has infinit length of height
+
+ListView + childern [] is used for showing the list with known number of items
+
+ListView.build is used for showing the list with unknown number of items --> has advantages in performoring.
