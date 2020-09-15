@@ -38,4 +38,4 @@ ListView and ListView.builder should be wrapped into container and a defined hei
 
 ListView + childern [] is used for showing the list with known number of items
 
-ListView.build is used for showing the list with unknown number of items --> has advantages in performoring.
+ListView.builder() is used for showing the list with unknown number of items --> has advantages in performoring.
